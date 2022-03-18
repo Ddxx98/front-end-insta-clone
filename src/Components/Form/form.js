@@ -20,7 +20,7 @@ export default function Form(){
     const PostData = async(e)=>{
         e.preventDefault()
         const {file,author,location,description} = user
-        const res = await fetch("http://localhost:5000/AddData",{
+        const res = await fetch("https://back-end-insta-clone.herokuapp.com/addData",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"

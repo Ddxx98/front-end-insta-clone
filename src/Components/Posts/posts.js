@@ -1,24 +1,24 @@
-// import React, { useEffect useState } from 'react';
+import React, { useEffect , useState } from 'react';
 import './posts.css';
-import Data from './data.json'
+// import Data from './data.json'
 import icon from '../instagram/icon.png'
 import camera from '../instagram/camera.png'
 import moreicon from '../instagram/more-icon.png'
 import like from '../instagram/like.png'
 import share from '../instagram/share.png'
 import { Link } from 'react-router-dom';
-// import axios from 'axios'
+import axios from 'axios'
 
 export default function Posts() {
-    //const [Data,setData] = useState()
+    const [Data,setData] = useState([])
 
-    // useEffect(()=>{
-    //     axios.get('http://localhost:5000/data').then((res)=>{
-    //         console.log(res)
-    //         setData(res.data.posts)
-    //     })
-    // },[])
-    // console.log(Data)
+    useEffect(()=>{
+        axios.get('https://back-end-insta-clone.herokuapp.com/data').then((res)=>{
+            console.log(res)
+            setData(res.data.posts)
+        })
+    },[])
+    console.log(Data)
     return (
         <>
         <header className='for-header'>
@@ -33,7 +33,7 @@ export default function Posts() {
                             <div className='inside-container'>
                                 <div className='container-name'>
                                     <div className='Name'>
-                                        <h1 className='profile-name'>{post.name}</h1>
+                                        <h1 className='profile-name'>{post.author}</h1>
                                         <label className='profile-location'><strong>{post.location}</strong></label>
                                     </div>
                                     <div>
@@ -41,7 +41,7 @@ export default function Posts() {
                                     </div>
                                 </div>
                                 <div className='image-display'>
-                                    <img className='profile-image' src={post.PostImage} alt='profile'></img>
+                                    <img className='profile-image' src={post.img} alt='profile'></img>
                                 </div>
                                 <div>
                                     <img className='imglike' src={like} alt='like'></img>
